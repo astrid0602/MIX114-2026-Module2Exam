@@ -60,7 +60,8 @@
     function matchesFilter(player) {
       if (state.filter === 'all') return true;
       if (state.filter === 'active') return player.active;
-      return player.team = state.filter;
+      //return player.team = state.filter; bug: dosssent compare with =. = overwrites player.team and makes the condition incorrect
+      return player.team === state.filter; // with === its comparing the players team value with the selected filter
     }
 
     function getVisiblePlayers() {
