@@ -60,7 +60,7 @@
     function matchesFilter(player) {
       if (state.filter === 'all') return true;
       if (state.filter === 'active') return player.active;
-      //return player.team = state.filter; bug: dosssent compare with =. = overwrites player.team and makes the condition incorrect
+      //return player.team = state.filter; bug: dose not compare with =. = overwrites player.team and makes the condition incorrect
       return player.team === state.filter; // with === its comparing the players team value with the selected filter
     }
 
@@ -107,7 +107,8 @@
     function togglePlayer(id) {
       const player = state.players.find(p => p.id === id);
       if (!player) return;
-      player.active = player.active;
+      //player.active = player.active; bug: player.active does not change the value. It assigns the same value back to itself, so the player does not get active og inactive
+      player.active = !player.active; // uses ! to toggle the boolean value
       render();
     }
 
