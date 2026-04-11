@@ -119,7 +119,8 @@
 
     function resetScores() {
       state.players.forEach(player => {
-        player.score = '0';
+        //player.score = '0'; bug: '0' is a string, not a number, can maybe cause problems when calculating scores
+        player.score = 0; // makes it a number
       });
       render();
     }
