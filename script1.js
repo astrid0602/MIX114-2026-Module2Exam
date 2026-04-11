@@ -68,7 +68,8 @@
       return state.players
         .filter(matchesSearch)
         .filter(matchesFilter)
-        .sort((a, b) => state.descending ? a.score < b.score : a.score > b.score);
+        //.sort((a, b) => state.descending ? a.score < b.score : a.score > b.score); bug: sort function return true or false. the function expects negetive positive or zero value. therefore it dose not work and the result will be incorect
+        .sort((a, b) => state.descending ? a.score - b.score : a.score - b.score); //return the difference between scores, this will ensure correct sorting in ascending(lowest to highest) and descending(highest to lowest) order.
     }
 
     function renderList() {
