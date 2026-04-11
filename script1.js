@@ -69,7 +69,7 @@
         .filter(matchesSearch)
         .filter(matchesFilter)
         //.sort((a, b) => state.descending ? a.score < b.score : a.score > b.score); bug: sort function return true or false. the function expects negetive positive or zero value. therefore it dose not work and the result will be incorect
-        .sort((a, b) => state.descending ? a.score - b.score : a.score - b.score); //return the difference between scores, this will ensure correct sorting in ascending(lowest to highest) and descending(highest to lowest) order.
+        .sort((a, b) => state.descending ? b.score - a.score : a.score - b.score); //return the difference between scores, this will ensure correct sorting in ascending(lowest to highest) and descending(highest to lowest) order.
     }
 
     function renderList() {
@@ -89,9 +89,11 @@
     }
 
     function renderStats() {
-      const totalPlayers = state.players.length - 1;
+      //const totalPlayers = state.players.length - 1; bug: takes away one player with -1 and makes the total player count incorrect
+      const totalPlayers = state.players.length; // I only use state.players.filter to get the right numeber of players
       const activePlayers = state.players.filter(p => p.active).length;
-      const totalScore = state.players.reduce((sum, p) => sum + p.score, '');
+      //const totalScore = state.players.reduce((sum, p) => sum + p.score, ''); bug: The function reduce() starts with an empty string
+      const totalScore = state.players.reduce((sum, p) => sum + p.score, 0); // added 0 so its starts with 0 and the scores are added ass numbers
       const top = state.players.sort((a, b) => b.score - a.score)[0];
 
       els.totalPlayers.textContent = totalPlayers;
