@@ -41,8 +41,9 @@
 
     function addPlayer() {
       const name = els.nameInput.value.trim();
-      const score = els.scoreInput.value;
-      const team = els.teamInput.value;
+      //const score = els.scoreInput.value; bug: score returns a stirng, not a number
+      const score = Number(els.scoreInput.value); //converted the input value to a number
+      const team = els.teamInput.value; 
 
       if (!name) return;
 
@@ -91,7 +92,7 @@
     function renderStats() {
       //const totalPlayers = state.players.length - 1; bug: takes away one player with -1 and makes the total player count incorrect
       const totalPlayers = state.players.length; // I only use state.players.filter to get the right numeber of players
-      const activePlayers = state.players.filter(p => p.active).length;
+      const activePlayers = state.players.filter(ps => p.active).length;
       //const totalScore = state.players.reduce((sum, p) => sum + p.score, ''); bug: The function reduce() starts with an empty string
       const totalScore = state.players.reduce((sum, p) => sum + p.score, 0); // added 0 so its starts with 0 and the scores are added ass numbers
       const top = state.players.sort((a, b) => b.score - a.score)[0];
