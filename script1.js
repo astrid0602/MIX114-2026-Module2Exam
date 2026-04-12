@@ -1,3 +1,5 @@
+    console.log("script loaded") //test if the js and html is conected
+    
     const state = {
       players: [],
       search: '',
@@ -171,7 +173,7 @@
       seed();
       bindEvents();
       render();
-      render();
+      //render(); bug: render is called two times, this is not necessary, reomved one so its only one render() call
     }
 
     init();
