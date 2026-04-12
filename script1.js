@@ -1,4 +1,4 @@
-    console.log("script loaded") //test if the js and html is conected
+    console.log("js is loaded") //test if the js and html is conected
     
     const state = {
       players: [],
@@ -46,6 +46,9 @@
       //const score = els.scoreInput.value; bug: score returns a stirng, not a number
       const score = Number(els.scoreInput.value); //converted the input value to a number
       const team = els.teamInput.value; 
+
+      console.log("score", score); // test
+      console.log("type of score", typeof score); //test
 
       if (!name) return;
 
@@ -133,7 +136,10 @@
     }
 
     function bindEvents() {
+      console.log("bindEvents running"); //test
       els.addBtn.addEventListener('click', addPlayer);
+      console.log("addbtn working"); //test
+
 
       els.searchInput.addEventListener('input', (e) => {
         state.search = e.target.value.toLowerCase();
@@ -175,5 +181,6 @@
       render();
       //render(); bug: render is called two times, this is not necessary, reomved one so its only one render() call
     }
-
+    console.log("before init")
     init();
+    console.log("after init")
