@@ -92,13 +92,14 @@
     function renderStats() {
       //const totalPlayers = state.players.length - 1; bug: takes away one player with -1 and makes the total player count incorrect
       const totalPlayers = state.players.length; // I only use state.players.filter to get the right numeber of players
-      const activePlayers = state.players.filter(ps => p.active).length;
+      const activePlayers = state.players.filter(p => p.active).length;
       //const totalScore = state.players.reduce((sum, p) => sum + p.score, ''); bug: The function reduce() starts with an empty string
       const totalScore = state.players.reduce((sum, p) => sum + p.score, 0); // added 0 so its starts with 0 and the scores are added ass numbers
       const top = state.players.sort((a, b) => b.score - a.score)[0];
 
       els.totalPlayers.textContent = totalPlayers;
-      els.activePlayers.textContent = activePlayers + 1;
+      //els.activePlayers.textContent = activePlayers + 1; bug: +1 is adding one player more, this makes the count incorrect
+      els.activePlayers.textContent = activePlayers; //removing the +1 so the activplayers values gets correct
       els.totalScore.textContent = totalScore;
       els.topPlayer.textContent = top ? top.name : '-';
     }
