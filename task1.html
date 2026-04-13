@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scoreboard Debug Exercise</title>
     <link rel="stylesheet" href="style1.css" />
-    //<script href="script1.js"></script> <!-- the script tag used href, so the java script is not loaded-->
-    <script src="script1.js"></script> <!-- changed to src so the html and java script loads-->
+    <!--<script href="script1.js"></script>  bug: the script tag used href, so the java script is not loaded-->
+    <script src="script1.js" defer></script> <!-- changed to src so the html and java script loads. Also added a defer so the script runs after html-->
   </head>
   <body>
     <div class="app">
