@@ -60,7 +60,8 @@
 
     function matchesSearch(player) {
       if (!state.search) return true;
-      return player.name.includes(state.search);
+      //return player.name.includes(state.search); bug: in the evntListener for search was converted to lowercase "state.search = e.target.value.toLowerCase();", but player.name is not. therefore the search function is not consistent with uppercase and lowercase letters
+      return player.name.toLowerCase().includes(state.search); // Convert player.name to lower case to, so they have the same 
     }
 
     function matchesFilter(player) {
